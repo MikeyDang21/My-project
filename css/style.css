@@ -1,0 +1,76 @@
+/* 1. Mobile View (Mobile-first: Mặc định 1 cột, gap 10px) */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding: 10px;
+}
+
+figure {
+    background-color: #f0f0f0;
+    border: 2px solid #ccc;
+    padding: 10px;
+    margin: 0;
+    text-align: center;
+}
+
+img {
+    width: 100%;
+    height: auto;
+}
+
+/* 2. Tablet View (Trigger từ 772px trở lên) */
+@media screen and (min-width: 772px) {
+    .gallery {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    figure {
+        border-radius: 50%; /* Tạo hình tròn cho figure */
+    }
+    
+    figure:last-child {
+        grid-column: span 2; /* Fig cuối chiếm trọn 2 cột */
+    }
+}
+
+/* 3. Large Screen View (Trigger từ 992px trở lên) */
+@media screen and (min-width: 992px) {
+    .gallery {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    figure {
+        border-radius: 0; /* Xóa bỏ border-radius từ tablet */
+    }
+    
+    figure:nth-child(3n) {
+        grid-column: span 2; /* Mỗi figure thứ 3 chiếm 2 cột */
+    }
+}
+
+/* 4. Prefers Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+}
+
+/* 5. Prefers Color Scheme: Dark (Chế độ tối) */
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #121212;
+        color: #ffffff;
+    }
+    
+    figure {
+        background-color: #2b2b2b; /* Màu nền tối cho figure */
+        color: #ffffe0; /* Màu chữ sáng / vàng nhạt */
+        border-color: #000000; /* Viền màu đen */
+    }
+}
